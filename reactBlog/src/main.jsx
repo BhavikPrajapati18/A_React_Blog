@@ -21,13 +21,13 @@ import Post from "./pages/Post.jsx";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
+      
       <Route path="/" element={<Home />} />
       <Route
         path="/login"
         element={
           <AuthLayout authentication={false}>
-            {" "}
-            <Login />{" "}
+            <Login />
           </AuthLayout>
         }
       />
@@ -35,45 +35,38 @@ const router = createBrowserRouter(
         path="/signup"
         element={
           <AuthLayout authentication={false}>
-            {" "}
-            <Signup />{" "}
+            <Signup />
           </AuthLayout>
         }
       />
       <Route
         path="/all-posts"
         element={
-          <AuthLayout authentication={""}>
-            {" "}
-            <AllPosts />{" "}
+          <AuthLayout authentication>
+            <AllPosts />
           </AuthLayout>
         }
       />
       <Route
         path="/add-post"
         element={
-          <AuthLayout authentication={""}>
-            {" "}
-            <AddPost />{" "}
+          <AuthLayout authentication>
+            <AddPost />
           </AuthLayout>
         }
       />
       <Route
         path="/edit-post/:slug"
         element={
-          <AuthLayout authentication={""}>
-            {" "}
-            <EditPost />{" "}
+          <AuthLayout authentication>
+            <EditPost />
           </AuthLayout>
         }
       />
       <Route
         path="/post/:slug"
         element={
-          <AuthLayout>
-            {" "}
-            <Post />{" "}
-          </AuthLayout>
+            <Post />
         }
       />
     </Route>

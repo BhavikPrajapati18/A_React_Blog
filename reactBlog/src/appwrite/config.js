@@ -18,8 +18,8 @@ export class AppwriteService {
   async createPost({ title, content, featuredImage, userId, slug }) {
     try {
       return await this.database.createDocument(
-        (conf.appwriteDatabaseId = appwriteDatabaseId),
-        (conf.appwriteCollectionId = appwriteCollectionId),
+        conf.appwriteDatabaseId ,
+        conf.appwriteCollectionId,
         slug,
         {
           title,
@@ -37,8 +37,8 @@ export class AppwriteService {
   async updatePost(slug, { title, content, featuredImage, userId, status }) {
     try {
       return await this.database.updateDocument(
-        (conf.appwriteDatabaseId = appwriteDatabaseId),
-        (conf.appwriteCollectionId = appwriteCollectionId),
+        conf.appwriteDatabaseId ,
+        conf.appwriteCollectionId ,
         slug,
         {
           title,
@@ -57,8 +57,8 @@ export class AppwriteService {
   async deletePost(slug) {
     try {
       await this.database.deleteDocument(
-        this.conf.appwriteDatabaseId,
-        this.conf.appwriteCollectionId,
+        conf.appwriteDatabaseId,
+        conf.appwriteCollectionId,
         slug
       );
       return true;
@@ -96,19 +96,20 @@ export class AppwriteService {
 
   async createFile(file) {
     try {
-      return await this.database.createFile(
+      return await this.bucket.createFile(
         conf.appwriteBucketId,
         ID.unique(),
         file
       );
     } catch (error) {
       console.log("AppwriteService -> createFile -> error", error);
+      return false
     }
   }
 
   async deleteFile(fileId){
     try {
-      await this.database.deleteFile(
+      await this.bucket.deleteFile(
         conf.appwriteBucketId,
         fileId
       )

@@ -31,7 +31,7 @@ export default function PostForm({post}) {
         appwriteService.deleteFile(post.featuredImage);
       }
 
-      const dbPost = appwriteService.updatePost( post.$id , { 
+      const dbPost = await appwriteService.updatePost( post.$id , { 
         ...data , 
         featuredImage : file? file.$id : undefined,
         })
@@ -40,7 +40,7 @@ export default function PostForm({post}) {
           navigate(`/post/${dbPost.$id}`)
         }
     }else {
-      const file = data.iamge[0] ? await appwriteService.createFile( data.image[0] ) : null
+      const file = data.image[0] ? await appwriteService.createFile( data.image[0] ) : null
 
       if ( file ){
         const fileId = file.$id;
