@@ -8,16 +8,16 @@ function PostCards({
   title
 }) {
   return (
-    <div>
-      <div>
-        <Link to={`/post/${$id}`}>
-        <img src={appwriteService.getFilePreview(featuredImage)} alt="" />
-        </Link>
+    <Link to={`/post/${$id}`}>
+    <div className='w-full bg-gray-100 rounded-xl p-4'>
+      <div className='w-full justify-center mb-4'>
+        <img src={appwriteService.getFilePreview(featuredImage)} alt={title} />
       </div>    
       <div>
-        <h1>{title}</h1>
+        <h1 className='text-xl font-bold'>{title}</h1>
       </div>
     </div>
+    </Link>
   )
 }
 

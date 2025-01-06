@@ -11,12 +11,13 @@ function Protected({children , authentication = true }) {
   useEffect(() => {
     if (authentication && authentication !== authStatus) {
       navigate('/login')      
-    } else if (authentication && authentication !== authStatus) {
+    } else if (!authentication && authentication !== authStatus) {
       navigate('/')
     }
+    setLoder(false)
   } , [authStatus, navigate , authentication])
 
-  return loder ? <h1>Loading...</h1> : {children} 
+  return loder ? <h1>Loading...</h1> : <> {children} </> 
 }
 
 export default Protected

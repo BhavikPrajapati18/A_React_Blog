@@ -1,10 +1,11 @@
-import React from 'react'
-import { Input , Button } from './index'
-import { set, useForm } from 'react-hook-form'
-import { AuthService } from '../appwrite/auth'
+import React, { useState } from 'react'
+import { Input , Button , Logo } from './index'
+import { useForm } from 'react-hook-form'
+import  AuthService  from '../appwrite/auth'
 import { useDispatch } from 'react-redux'
-import { logout } from '../store/authSlice'
+import { login } from '../store/authSlice'
 import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
 function Signup() {
@@ -16,15 +17,14 @@ function Signup() {
   const Signup = async (data) => {
     setError("")
     try {
-      const session = await AuthService.createAccount(data);
-      if (session) {
+      const userData = await AuthService.createAccount(data)
+      if (userData) {
         const userData = await AuthService.userActive();
         if (userData) dispatch(login(userData));
         navigate('/')
       }
     } catch (error) {
-      setError("Invalid email or password")
-      console.error(error)
+      setError(error.message)
     }
   }
 
@@ -36,7 +36,7 @@ function Signup() {
                         <Logo width="100%" />
                     </span>
         </div>
-        <h2 className="text-center text-2xl font-bold leading-tight">Sign in to your account</h2>
+        <h2 className="text-center text-2xl font-bold leading-tight text-black/60">Sign in to your account</h2>
         <p className="mt-2 text-center text-base text-black/60">
                     Don&apos;t have any account?&nbsp;
                     <Link
@@ -49,20 +49,18 @@ function Signup() {
         {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
         <form
           onSubmit={handleSubmit(Signup)}>
-            <div>
+            <div className='space-y-5'>
               <Input
                 type='text'
                 label='Full Name'
-                className='mt-4'
                 placeholder='Full Name'
-                {...register , {
-                  required : true
-                }}/>
+                {...register ("name" ,{
+                  required : true,
+                })}/>
 
                 <Input
                 type='email'
                 name='email'
-                className='mt-4'
                 placeholder='Email'
                 {...register("email", {
                   required: true,
@@ -75,7 +73,6 @@ function Signup() {
                 <Input
                 type='password'
                 name='password'
-                className='mt-4'
                 placeholder='Password'
                 {...register('password' , {
                   required: true,

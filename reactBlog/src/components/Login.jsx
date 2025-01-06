@@ -1,10 +1,11 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Input , Button } from './index'
+import { Input , Button , Logo } from './index'
 import { useForm } from 'react-hook-form'
 import { AuthService } from '../appwrite/auth'
 import { useDispatch } from 'react-redux'
 import { login } from '../store/authSlice'
+import { Link } from 'react-router-dom'
 
 
 function Login() {
@@ -25,8 +26,7 @@ function Login() {
         navigate('/')
       }
     } catch (error) {
-      setError("Invalid email or password")
-      console.error(error)
+      setError(error.message)
     }
   }
 

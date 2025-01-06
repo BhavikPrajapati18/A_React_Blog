@@ -1,17 +1,18 @@
-import { Client, Databases, Query } from "appwrite";
-import conf from "../conf/conf";
+import { Client, ID, Databases, Storage, Query } from "appwrite";
+import conf from "../conf/conf.js";
 
 export class AppwriteService {
   client = new Client();
   database;
+  bucket;
 
   constructor() {
     this.client
       .setEndpoint(conf.appwriteUrlId)
       .setProject(conf.appwriteProjectId);
     this.database = new Databases(this.client);
+    this.bucket = new Storage(this.client);
 
-    database = new Databases(this.client);
   }
 
   async createPost({ title, content, featuredImage, userId, slug }) {
@@ -119,9 +120,14 @@ export class AppwriteService {
   }
 
   getFilePreview(fileId){
-    return this.database.getFilePreview(
+    return this.bucket.getFilePreview(
       conf.appwriteBucketId,
       fileId
     )
   }
 }
+
+
+const service = new AppwriteService();
+
+export default service;

@@ -11,9 +11,12 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { AuthLayout, Login } from "./components";
-import Signup from "./components/Signup.jsx";
+import Signup from "./pages/Signup.jsx";
 import AllPosts from "./pages/AllPosts.jsx";
 import AddPost from "./pages/AddPost.jsx";
+import Home from "./pages/Home.jsx";
+import EditPost from "./pages/EditPost.jsx";
+import Post from "./pages/Post.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(

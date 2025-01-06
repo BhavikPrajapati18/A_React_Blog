@@ -7,7 +7,7 @@ import appwriteService from '../../appwrite/config'
 import { useCallback } from 'react'
  
 
-export function PostForm({post}) {
+export default function PostForm({post}) {
 
   const { handleSubmit , register , watch , control , getValues , setValue } = useForm({
     defaultValues : {
@@ -67,7 +67,7 @@ export function PostForm({post}) {
   React.useEffect(() => {
     const subscription = watch((value, { name }) => {
       if (name === "title") {
-        setValue("slug", slugTransform(value.title));
+        setValue("slug", slugTransform(value.title) , { shouldValidate: true });
       }
     });
     return () => subscription.unsubscribe();
@@ -124,4 +124,3 @@ export function PostForm({post}) {
 );
 }
 
-export default PostForm

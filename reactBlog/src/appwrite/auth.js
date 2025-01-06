@@ -14,7 +14,7 @@ export class AuthService {
 
   async createAccount({ email, password, name }) {
     try {
-      const userAccount = this.account.create(
+      const userAccount = await this.account.create(
         ID.unique(),
         email,
         password,
@@ -26,20 +26,18 @@ export class AuthService {
         return userAccount;
       }
     } catch (error) {
-      throw error;
-      console.log(error);
+      console.log("Create Account : ",error);
     }
   }
 
   async login({ email, password }) {
     try {
-      return await this.account.createEmailPasswordSession({
+      return await this.account.createEmailPasswordSession(
         email,
         password,
-      });
+      );
     } catch (error) {
-      throw error;
-      console.log(error);
+      console.log("Login : ",error);
     }
   }
 
@@ -48,7 +46,7 @@ export class AuthService {
       return await this.account.get();
         }
         catch (error) {
-          console.log("error", error);
+          console.log("iserActive : ", error);
     }
     return null;
   }
@@ -57,8 +55,7 @@ export class AuthService {
     try {
       await this.account.deleteSessions();
     } catch (error) {
-      throw error;
-      console.log(error);
+      console.log("Logout : ",error);
     }
   }
 }

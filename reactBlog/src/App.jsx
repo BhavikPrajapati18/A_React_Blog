@@ -24,21 +24,15 @@ function App() {
   }, []);
 
   return !loading ? (
-    <>
-      <div className="bg-gray-800 w-screen h-screen flex flex-col items-center justify-center text-white">
-        <div className="flex flex-col items-center">
-          <Header />
-          <main>
-            <h1>
-              hello
-            </h1>
-            <Outlet />
-          </main>
-          <Footer />
-        </div>
+    <div className='min-h-screen flex flex-wrap content-between bg-gray-400'>
+      <div className='w-full block'>
+        <Header />
+        <main>
+        <Outlet />
+        </main>
+        <Footer />
       </div>
-    </>
-  ) : null;
+    </div>
+  ) : null
 }
-
 export default App;

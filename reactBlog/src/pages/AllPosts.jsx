@@ -1,5 +1,5 @@
 import React,  { useEffect , useState } from 'react'
-import { Container, PostCard } from '../components'
+import { Container, PostCards } from '../components'
 import { AppwriteService } from '../appwrite/config'
 
 function AllPosts() {
