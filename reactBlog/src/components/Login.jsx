@@ -7,7 +7,6 @@ import { useDispatch } from 'react-redux'
 import { login } from '../store/authSlice'
 import { Link } from 'react-router-dom'
 
-
 function Login() {
   const {register , handleSubmit} = useForm()
   const dispatch = useDispatch()

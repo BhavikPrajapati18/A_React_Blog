@@ -26,7 +26,7 @@ export class AuthService {
         return userAccount;
       }
     } catch (error) {
-      console.log("Create Account : ",error);
+     throw error;
     }
   }
 
@@ -46,7 +46,7 @@ export class AuthService {
       return await this.account.get();
         }
         catch (error) {
-          console.log("iserActive : ", error);
+          console.log("userActive : ", error);
     }
     return null;
   }

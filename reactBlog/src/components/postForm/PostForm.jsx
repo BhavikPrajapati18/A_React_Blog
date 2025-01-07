@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import appwriteService from '../../appwrite/config'
 import { useCallback } from 'react'
- 
+
 
 export default function PostForm({post}) {
 
@@ -25,7 +25,7 @@ export default function PostForm({post}) {
   const submit = async(data) => {
 
     if (post){
-      const file = data.image[0] ? await appwriteService.createFile( data.image[0] ) : null
+      const file = data.image[0] ? await appwriteService.createFile( data.image[0] ) : null;
 
       if ( file ){
         appwriteService.deleteFile(post.featuredImage);
@@ -34,7 +34,7 @@ export default function PostForm({post}) {
       const dbPost = await appwriteService.updatePost( post.$id , { 
         ...data , 
         featuredImage : file? file.$id : undefined,
-        })
+        });
 
         if ( dbPost ){
           navigate(`/post/${dbPost.$id}`)
