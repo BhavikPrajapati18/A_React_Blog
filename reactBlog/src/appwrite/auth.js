@@ -26,27 +26,23 @@ export class AuthService {
         return userAccount;
       }
     } catch (error) {
-     throw error;
+      throw error;
     }
   }
 
   async login({ email, password }) {
     try {
-      return await this.account.createEmailPasswordSession(
-        email,
-        password,
-      );
+      return await this.account.createEmailPasswordSession(email, password);
     } catch (error) {
-      console.log("Login : ",error);
+      console.log("Login : ", error);
     }
   }
 
   async userAcitve() {
     try {
       return await this.account.get();
-        }
-        catch (error) {
-          console.log("userActive : ", error);
+    } catch (error) {
+      console.log("userActive : ", error);
     }
     return null;
   }
@@ -55,7 +51,7 @@ export class AuthService {
     try {
       await this.account.deleteSessions();
     } catch (error) {
-      console.log("Logout : ",error);
+      console.log("Logout : ", error);
     }
   }
 }
